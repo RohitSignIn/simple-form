@@ -10,7 +10,11 @@ function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className='fixed w-full px-2 bg-white h-screen md:h-auto'>
+    <div
+      className={`fixed w-full px-2 bg-white ${
+        menuOpen && "h-screen"
+      } md:h-auto`}
+    >
       <div className='flex justify-between lg:justify-evenly items-center py-4 border-b-2 md:border-0'>
         <Logo />
         <Nav />

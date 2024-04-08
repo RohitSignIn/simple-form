@@ -15,7 +15,7 @@ function Header() {
         menuOpen && "h-screen"
       } md:h-auto`}
     >
-      <div className='flex justify-between lg:justify-evenly items-center py-4 border-b-2 md:border-0'>
+      <div className='flex justify-between lg:justify-evenly items-center py-4 border-b-2'>
         <Logo />
         <Nav />
 

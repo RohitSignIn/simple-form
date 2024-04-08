@@ -1,24 +1,69 @@
+import { ChangeEvent, useState } from "react";
+
 function InfoForm() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
+
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+    console.log(formData);
+  }
+
   return (
-    <div className='px-4'>
-      <div className='text-center'>
-        <h2 className='text-2xl'>Contact Form</h2>
-        <p>
-          We'll get back to you soon Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Est enim eveniet possimus quia sed harum, temporibus
-          magni facilis molestiae aperiam magnam nesciunt quibusdam, quo quidem
-          unde velit atque suscipit deserunt. Necessitatibus aspernatur fugit
-          dolore. Pariatur, deleniti. Cum dolore, sapiente est doloribus, ab
-          libero esse voluptate obcaecati odio quidem atque. Libero magnam sint
-          aliquam aliquid repudiandae asperiores unde earum quam delectus.
-          Similique nesciunt, laboriosam ipsa nostrum quas, fuga in libero
-          facilis consequuntur laudantium numquam facere. Reiciendis dolorum
-          voluptatem nam, architecto autem optio eius, necessitatibus obcaecati,
-          deleniti inventore aut enim eveniet doloremque? Sunt provident tempore
-          veniam, enim, accusamus totam ab repellendus hic minima commodi est
-          quia? Odit ut sed dignissimos architecto at modi sit accusantium? Nam
-          quia molestiae iusto amet alias facilis?
-        </p>
+    <div className='px-2 py-8 flex justify-center'>
+      <div className='w-72 md:w-96 lg:w-2/5 px-4 border-2 rounded-lg'>
+        <div className='py-4'>
+          <h2 className='text-4xl font-bold text-yellow-300'>Contact Form</h2>
+          <p>
+            <i>We'll get back to you soon</i>
+          </p>
+        </div>
+        <div>
+          <div className='py-2'>
+            <label className='block text-sm font-semibold' htmlFor='name'>
+              Name
+            </label>
+            <input
+              className='bg-yellow-50 text-sm py-4 px-4 w-full rounded-md outline-none'
+              id='name'
+              type='text'
+              placeholder='Enter Name'
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div className='py-2'>
+            <label className='block text-sm font-semibold' htmlFor='email'>
+              Email
+            </label>
+            <input
+              className='bg-yellow-50 text-sm py-4 px-4 w-full rounded-md outline-none'
+              id='email'
+              type='email'
+              placeholder='Enter Email'
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div className='py-2'>
+            <label className='block text-sm font-semibold' htmlFor='phone'>
+              Phone
+            </label>
+            <input
+              className='bg-yellow-50 text-sm py-4 px-4 w-full rounded-md outline-none'
+              id='phone'
+              type='tel'
+              placeholder='Enter Phone Number'
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div className='py-4 text-center'>
+            <button className='bg-yellow-300 py-2 px-4 rounded font-bold'>
+              Submit
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

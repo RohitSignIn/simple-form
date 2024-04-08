@@ -12,7 +12,7 @@ function NavPopUp({ menuOpen }: { menuOpen: MENUOPEN }) {
       {/* Small - Devices - POPUP */}
       {NavLinksData.filter((link) => link.smallDev).map((link) => {
         return (
-          <div className='py-3 border-b-2'>
+          <div key={link.id} className='py-3 border-b-2'>
             <a href={link.href}>{link.smallDev}</a>
           </div>
         );

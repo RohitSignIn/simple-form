@@ -6,7 +6,7 @@ function Nav() {
       {/* Medium and above - Devices */}
       {NavLinksData.filter((link) => link.smallDev).map((link) => {
         return (
-          <div>
+          <div key={link.id}>
             <a href={link.href}>{link.smallDev}</a>
           </div>
         );

@@ -1,22 +1,37 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import CountryList from "country-list-with-dial-code-and-flag";
-import ErrorMessage from "./ErrorMessage";
+import { AxiosError } from "axios";
 
-type Inputs = {
-  name: string;
-  email: string;
-  dialcode: string;
-  phone: string;
-};
+import ErrorMessage from "./ErrorMessage";
+import { INFORFORMINPUTS } from "../../types/InfoFormType";
+import api from "../../config/axiosInstance";
+import { notifyError, notifySuccess } from "../notification_comp/notifications";
 
 function HandleInfoForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<INFORFORMINPUTS>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<INFORFORMINPUTS> = (data) => {
+    handleFormSubmit(data);
+  };
+
+  async function handleFormSubmit(data: INFORFORMINPUTS) {
+    try {
+      await api.post("contact", data);
+      notifySuccess("Thanks for submitting! We'll reach out to you shortly.");
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        if (err?.response?.status == 409) {
+          notifyError(
+            "Looks like you're already in our records. We'll be in touch soon."
+          );
+        }
+      }
+    }
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

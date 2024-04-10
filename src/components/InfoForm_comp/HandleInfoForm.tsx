@@ -3,7 +3,7 @@ import CountryList from "country-list-with-dial-code-and-flag";
 import { AxiosError } from "axios";
 
 import ErrorMessage from "./ErrorMessage";
-import { INFORFORMINPUTS } from "../../types/InfoFormType";
+import { INFOFORMINPUTS } from "../../types/InfoFormType";
 import api from "../../config/axiosInstance";
 import { notifyError, notifySuccess } from "../notification_comp/notifications";
 
@@ -12,13 +12,13 @@ function HandleInfoForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<INFORFORMINPUTS>();
+  } = useForm<INFOFORMINPUTS>();
 
-  const onSubmit: SubmitHandler<INFORFORMINPUTS> = (data) => {
+  const onSubmit: SubmitHandler<INFOFORMINPUTS> = (data) => {
     handleFormSubmit(data);
   };
 
-  async function handleFormSubmit(data: INFORFORMINPUTS) {
+  async function handleFormSubmit(data: INFOFORMINPUTS) {
     try {
       await api.post("contact", data);
       notifySuccess("Thanks for submitting! We'll reach out to you shortly.");

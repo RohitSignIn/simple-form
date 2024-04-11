@@ -11,6 +11,7 @@ function HandleInfoForm() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<INFOFORMINPUTS>();
 
@@ -22,6 +23,7 @@ function HandleInfoForm() {
     try {
       await api.post("contact", data);
       notifySuccess("Thanks for submitting! We'll reach out to you shortly.");
+      reset();
     } catch (err) {
       if (err instanceof AxiosError) {
         if (err?.response?.status == 409) {
@@ -29,6 +31,11 @@ function HandleInfoForm() {
             "Looks like you're already in our records. We'll be in touch soon."
           );
         }
+        if (err?.code == "ERR_NETWORK") {
+          notifyError("Check your network connection");
+          return;
+        }
+        reset();
       }
     }
   }
@@ -115,7 +122,7 @@ function HandleInfoForm() {
       <div className='py-4 text-center'>
         <input
           type='submit'
-          className='bg-yellow-300 py-2 text-center cursor-pointer px-4 rounded font-bold'
+          className='bg-yellow-300 py-2 text-center cursor-pointer px-4 rounded font-bold hover:bg-yellow-200 transition-all'
           defaultValue={"Submit"}
         />
       </div>
